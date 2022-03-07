@@ -620,11 +620,12 @@ const thebe_selector_output = ".output, .cell_output"
 <p>As briefly covered in the first update, A simple model is more desirable for the initial trials with model compression methods. After some testing with different word embedding models we were able to achieve desirable results. The model is currently using Stanford’s GloVe (Global Vectors for Word Representation)<a class="footnote-reference brackets" href="#id4" id="id1">1</a> for the word embeddings. For the emotion classification we are using a standard Sequential Model<a class="footnote-reference brackets" href="#id5" id="id2">2</a> which is constructed with Adam, Relu/Sigmoid activation, and a dropout layer.</p>
 <div class="section" id="key-metrics">
 <h3>Key Metrics<a class="headerlink" href="#key-metrics" title="Permalink to this headline">¶</a></h3>
-<p>Because of the imbalance in classes, we choose the F1 score as our statistic among other metrics to measure the performance which is the usual convention for this type of task.</p>
+<p>Because of the imbalance in classes, we choose the <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span>  score as our statistic among other metrics to measure the performance which is the usual convention for this type of task.</p>
 <div class="math notranslate nohighlight">
-\[F1 Score =2 \cdot \frac{\text { Precision } \cdot \text { Recall }}{\text { Precision }+\text { Recall }}\]</div>
+\[\text{$F1$ Score} =2 \cdot \frac{\text { Precision } \cdot \text { Recall }}{\text { Precision }+\text { Recall }}\]</div>
 <p>where</p>
-<p><span class="math notranslate nohighlight">\(\begin{aligned} \text { Precision } &amp;=\frac{T P}{T P+F P} \\ \text { Recall } &amp;=\frac{T P}{T P+F N} \end{aligned}\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} \text { Precision } &amp;=\frac{T P}{T P+F P} \\ \text { Recall } &amp;=\frac{T P}{T P+F N} \end{aligned}\end{split}\]</div>
 <p>Precision measures the percentage of true positives from all positive cases detected by the model, while Recall(sensitivity) measures the percentage of positive cases the model detects successfully. Notice that <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score reflects both metrics: the <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score is high only when both Precision and Recall are high.</p>
 </div>
 <div class="section" id="some-tuning">
@@ -635,7 +636,7 @@ const thebe_selector_output = ".output, .cell_output"
 <hr class="docutils" />
 <p>Layer selection was chosen manually by running 30 epochs with 5 trials with an average taken across the trials.</p>
 <p><img alt="" src="../../_images/wordvector.png" /></p>
-<p>The figure depicts the “best tradeoff” region and shows additional layers do not provide a more optimal model when we want to maximize F1.</p>
+<p>The figure depicts the “best tradeoff” region and shows additional layers do not provide a more optimal model when we want to maximize \mathrm{F} 1$.</p>
 </div>
 </div>
 <div class="section" id="compression">
@@ -663,8 +664,7 @@ const thebe_selector_output = ".output, .cell_output"
 <hr class="docutils" />
 <p><strong>Example</strong>:
 For symmetric uniform quantizations: for 99th percentiles, we can can take
-<span class="math notranslate nohighlight">\(\beta=|w|_{0.99}, \alpha=-\beta\)</span>
-For asymmetric uniform quantizations: we can can take
+<span class="math notranslate nohighlight">\(\beta=|w|_{0.99}, \alpha=-\beta\)</span>. For asymmetric uniform quantizations: we can can take
 <span class="math notranslate nohighlight">\(\beta=w_{0.995}, \alpha=w_{0.05}\)</span>
 and implement the same quantization functions. If a weight exceeds a particular upperbound, we replace that weight with the upperbound/ lower bound percentile and transform it accordingly.</p>
 </div>
