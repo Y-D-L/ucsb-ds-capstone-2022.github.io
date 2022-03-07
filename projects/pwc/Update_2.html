@@ -621,7 +621,8 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="key-metrics">
 <h3>Key Metrics<a class="headerlink" href="#key-metrics" title="Permalink to this headline">¶</a></h3>
 <p>Because of the imbalance in classes, we choose the F1 score as our statistic among other metrics to measure the performance which is the usual convention for this type of task.</p>
-<p><span class="math notranslate nohighlight">\(F1\)</span> Score <span class="math notranslate nohighlight">\(=2 \cdot \frac{\text { Precision } \cdot \text { Recall }}{\text { Precision }+\text { Recall }}\)</span></p>
+<div class="math notranslate nohighlight">
+\[F1 Score =2 \cdot \frac{\text { Precision } \cdot \text { Recall }}{\text { Precision }+\text { Recall }}\]</div>
 <p>where</p>
 <p><span class="math notranslate nohighlight">\(\begin{aligned} \text { Precision } &amp;=\frac{T P}{T P+F P} \\ \text { Recall } &amp;=\frac{T P}{T P+F N} \end{aligned}\)</span></p>
 <p>Precision measures the percentage of true positives from all positive cases detected by the model, while Recall(sensitivity) measures the percentage of positive cases the model detects successfully. Notice that <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score reflects both metrics: the <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score is high only when both Precision and Recall are high.</p>
