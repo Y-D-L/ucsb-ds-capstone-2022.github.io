@@ -621,9 +621,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="key-metrics">
 <h3>Key Metrics<a class="headerlink" href="#key-metrics" title="Permalink to this headline">¶</a></h3>
 <p>Because of the imbalance in classes, we choose the F1 score as our statistic among other metrics to measure the performance which is the usual convention for this type of task.</p>
-<p><img alt="" src="projects/pwc/f1.png" /></p>
+<p><img alt="" src="projects/pwc/f1.png%7Cwidth=450" /></p>
 <p>where</p>
-<p><img alt="" src="../../_images/pr.png" /></p>
+<p><img alt="" src="projects/pwc/pr.png%7Cwidth=450" /></p>
 <p>Precision measures the percentage of true positives from all positive cases detected by the model, while Recall(sensitivity) measures the percentage of positive cases the model detects successfully. Notice that <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score reflects both metrics: the <span class="math notranslate nohighlight">\(\mathrm{F} 1\)</span> score is high only when both Precision and Recall are high.</p>
 </div>
 <div class="section" id="some-tuning">
@@ -633,13 +633,13 @@ const thebe_selector_output = ".output, .cell_output"
 <p><strong>Note</strong>: We are still fine-tuning the model as we move onto other tasks.</p>
 <hr class="docutils" />
 <p>Layer selection was chosen manually by running 30 epochs with 5 trials with an average taken across the trials.</p>
-<p><img alt="" src="projects/pwc/wordvector.png" /></p>
+<p><img alt="" src="../../_images/wordvector.png" /></p>
 <p>The figure depicts the “best tradeoff” region and shows additional layers do not provide a more optimal model when we want to maximize F1.</p>
 </div>
 </div>
 <div class="section" id="compression">
 <h2>Compression<a class="headerlink" href="#compression" title="Permalink to this headline">¶</a></h2>
-<p>Moving into the main objectivee of the project. Our first method is a form of model compression called Quantization.</p>
+<p>Moving into the main objective of the project. Our first method is a form of model compression called Quantization.</p>
 <div class="section" id="quantization">
 <h3>Quantization<a class="headerlink" href="#quantization" title="Permalink to this headline">¶</a></h3>
 <p>Quantization from a mathematical standpoint is the process of taking a set of larger floating point numbers and mapping them to a set of smaller ones. A simple example is converting FP32 (floating point 32 bits) to a smaller precision like INT8 (Integer 8 bit) which is commonly known as 8-bit quantization.</p>
