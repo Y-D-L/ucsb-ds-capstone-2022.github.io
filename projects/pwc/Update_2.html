@@ -526,37 +526,14 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#where-alpha-beta-are-clipping-ranges-to-be-chosen-mathrm-z-is-a-zero-point-choosing-alpha-beta-is-what-we-referred-to-earlier-as-calibration">
-   where
-   <span class="math notranslate nohighlight">
-    \(\alpha,\beta\)
-   </span>
-   . are clipping ranges to be chosen,
-   <span class="math notranslate nohighlight">
-    \(\mathrm{z}\)
-   </span>
-   is a zero-point. Choosing
-   <span class="math notranslate nohighlight">
-    \(\alpha, \beta\)
-   </span>
-   is what we referred to earlier as
-   <em>
-    calibration
-   </em>
-   .
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#percentiles">
      Percentiles
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-10-week-goal">
-       The 10-Week goal
+      <a class="reference internal nav-link" href="#week-10-goal">
+       Week 10 goal
       </a>
      </li>
     </ul>
@@ -622,37 +599,14 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#where-alpha-beta-are-clipping-ranges-to-be-chosen-mathrm-z-is-a-zero-point-choosing-alpha-beta-is-what-we-referred-to-earlier-as-calibration">
-   where
-   <span class="math notranslate nohighlight">
-    \(\alpha,\beta\)
-   </span>
-   . are clipping ranges to be chosen,
-   <span class="math notranslate nohighlight">
-    \(\mathrm{z}\)
-   </span>
-   is a zero-point. Choosing
-   <span class="math notranslate nohighlight">
-    \(\alpha, \beta\)
-   </span>
-   is what we referred to earlier as
-   <em>
-    calibration
-   </em>
-   .
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#percentiles">
      Percentiles
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-10-week-goal">
-       The 10-Week goal
+      <a class="reference internal nav-link" href="#week-10-goal">
+       Week 10 goal
       </a>
      </li>
     </ul>
@@ -716,15 +670,14 @@ const thebe_selector_output = ".output, .cell_output"
 </ol>
 <hr class="docutils" />
 <p>Symmetric quantization is incredibly quick to calculate, because we do not need to compute the zero point of reference, and we only consider the absolute maximum value. Asymmetric quantization is particularly useful for quantization when the distribution of weights/ activation outputs are are heavily asymmetric, but it comes with a higher cost. From our readings, <strong>an efficient method is to use symmetric quantization for weights, asymmetric quantization for activation outputs with a subset of models weights.</strong></p>
-<p>A typical quantization function example:</p>
+<p><strong>Example</strong>: A general quantization function:</p>
 <div class="math notranslate nohighlight">
 \[Q(w)=\operatorname{Int}\left(\left(\frac{w}{\beta-\alpha}\right) \cdot(2^{n}-1)\right)+z\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha,\beta\)</span>. are clipping ranges to be chosen, <span class="math notranslate nohighlight">\(\mathrm{z}\)</span> is a zero-point. Choosing
+<span class="math notranslate nohighlight">\(\alpha, \beta\)</span> is what we referred to earlier as <em>calibration</em>.</p>
 </div>
 </div>
-</div>
-<div class="section" id="where-alpha-beta-are-clipping-ranges-to-be-chosen-mathrm-z-is-a-zero-point-choosing-alpha-beta-is-what-we-referred-to-earlier-as-calibration">
-<h2>where <span class="math notranslate nohighlight">\(\alpha,\beta\)</span>. are clipping ranges to be chosen, <span class="math notranslate nohighlight">\(\mathrm{z}\)</span> is a zero-point. Choosing
-<span class="math notranslate nohighlight">\(\alpha, \beta\)</span> is what we referred to earlier as <em>calibration</em>.<a class="headerlink" href="#where-alpha-beta-are-clipping-ranges-to-be-chosen-mathrm-z-is-a-zero-point-choosing-alpha-beta-is-what-we-referred-to-earlier-as-calibration" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="percentiles">
 <h3>Percentiles<a class="headerlink" href="#percentiles" title="Permalink to this headline">¶</a></h3>
 <p>The idea with percentiles Is to set the range to a percentile of the distribution of weights seen during calibration. In practice many pre-built functions that perform quantization only take a look at the maximum and the minimum weights. We hypothesize that with the imbalance in classes there will be outliers in the distribution of weights across the layers.  Thus, the manual function will provide the better tradeoff between robustness and compression.</p>
@@ -735,8 +688,8 @@ For symmetric quantizations: for 99th percentiles, we can can take
 <span class="math notranslate nohighlight">\(\beta=w_{0.995}, \alpha=w_{0.05}\)</span>
 and implement the same quantization functions. If a weight exceeds a particular upper bound, we replace that weight with the upper bound/ lower bound percentile and transform it accordingly.</p>
 <hr class="docutils" />
-<div class="section" id="the-10-week-goal">
-<h4>The 10-Week goal<a class="headerlink" href="#the-10-week-goal" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="week-10-goal">
+<h4>Week 10 goal<a class="headerlink" href="#week-10-goal" title="Permalink to this headline">¶</a></h4>
 <ol class="simple">
 <li><p>Create a Quantization function that considers the distribution of weights across layers and implements quantization accordingly.</p></li>
 <li><p>Analyze the tradeoff between accuracy and compression versus benchmark model.</p></li>
